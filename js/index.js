@@ -1,15 +1,15 @@
-const currencyEl_one = document.getElementById("currency-one");
-const currencyEl_two = document.getElementById("currency-two");
-const amountEl_one = document.getElementById("amount-one");
-const amountEl_two = document.getElementById("amount-two");
+const currencyel_One = document.getElementById("currency-one");
+const currencyel_Two = document.getElementById("currency-two");
+const amountel_One = document.getElementById("amount-one");
+const amountel_Two = document.getElementById("amount-two");
 const rateEl = document.getElementById("rate");
 const swap = document.getElementById("swap");
 
 // EventListener
-currencyEl_one.addEventListener("change", calcular);
-amountEl_one.addEventListener("input", calcular);
-currencyEl_two.addEventListener("change", calcular);
-amountEl_two.addEventListener("input", calcular);
+currencyel_One.addEventListener("change", calcular);
+amountel_One.addEventListener("input", calcular);
+currencyel_Two.addEventListener("change", calcular);
+amountel_Two.addEventListener("input", calcular);
 swap.addEventListener("click", () => {
   const temp = currencyEl_one.value;
   currencyEl_one.value = currencyEl_two.value;
@@ -20,18 +20,18 @@ swap.addEventListener("click", () => {
 calcular();
 
 function calcular() {
-  const currency_one = currencyEl_one.value;
-  const currency_two = currencyEl_two.value;
+  const currency_One = currencyel_One.value;
+  const currency_Two = currencyel_Two.value;
 
   fetch(
-    `http://api.exchangeratesapi.io/v1/latest?access_key=3c9dd1dbb4efe76e6de0bdbd302e3dc9&${currency_one}`
+    `http://api.exchangeratesapi.io/v1/latest?access_key=3c9dd1dbb4efe76e6de0bdbd302e3dc9&${currency_One}`
   )
     .then((response) => response.json())
     .then((data) => {
-      const convertion = data.rates[currency_two];
+      const convertion = data.rates[currency_Two];
 
-      rateEl.innerHTML = `1 ${currency_one} = ${convertion} ${currency_two} `;
+      rateEl.innerHTML = `1 ${currency_One} = ${convertion} ${currency_Two} `;
 
-      amountEl_two.value = (amountEl_one.value * convertion).toFixed(2);
+      amountel_Two.value = (amountel_One.value * convertion).toFixed(2);
     });
 }
